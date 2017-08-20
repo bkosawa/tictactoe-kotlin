@@ -1,9 +1,14 @@
 package br.com.kosawalabs.tictactoechallenge
 
 class Contract {
-    interface View
+    interface View {
+        fun startGame()
+    }
 
-    interface Presenter
+    interface Presenter {
+        fun start()
+        fun onClicked(position: Int)
+    }
 
     interface Model
 }

@@ -7,21 +7,33 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 
 class MainActivity : AppCompatActivity(), Contract.View {
 
     private lateinit var board: RecyclerView
+    private lateinit var presenter: GamePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         board = findViewById(R.id.board) as RecyclerView
-        board.adapter = BoardAdapter()
+        presenter = GamePresenter()
+        presenter.view = this
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.start()
+    }
+
+    override fun startGame() {
+        board.adapter = BoardAdapter(presenter)
         board.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         board.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
     }
 
-    private class BoardAdapter : RecyclerView.Adapter<BoardAdapter.Item>() {
+    private class BoardAdapter(val presenter: Contract.Presenter): RecyclerView.Adapter<BoardAdapter.Item>() {
 
         override fun getItemViewType(position: Int): Int = VIEW_TYPE_EMPTY
 
@@ -38,12 +50,18 @@ class MainActivity : AppCompatActivity(), Contract.View {
         }
 
         override fun onBindViewHolder(holder: Item, position: Int) {
-
+            holder.button.setOnClickListener { this.presenter.onClicked(position) }
         }
 
         override fun getItemCount(): Int = BOARD_SIZE
 
-        internal inner class Item(itemView: View) : RecyclerView.ViewHolder(itemView)
+        inner class Item(view: View) : RecyclerView.ViewHolder(view) {
+            val button: ImageButton
+
+            init {
+                button = view.findViewById(R.id.position) as ImageButton
+            }
+        }
 
         companion object {
             private val BOARD_SIZE = 9
