@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Contract.View {
 
     private lateinit var board: RecyclerView
 
