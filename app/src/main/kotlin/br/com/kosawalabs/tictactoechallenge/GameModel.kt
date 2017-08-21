@@ -15,6 +15,8 @@ class GameModel : Contract.Model {
 
     override fun getMark(position: Int): Int = markedPositionsMap[position]!!
 
+    override fun getBoardSize(): Int = BOARD_SIZE
+
     companion object {
         val BOARD_SIZE = 9
         val POSITION_EMPTY = 0

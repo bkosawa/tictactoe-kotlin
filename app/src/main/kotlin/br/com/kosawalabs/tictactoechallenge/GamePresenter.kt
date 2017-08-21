@@ -11,4 +11,8 @@ class GamePresenter : Contract.Presenter {
     override fun onClicked(position: Int) {
         model.markCross(position)
     }
+
+    override fun getMark(position: Int): Int = model.getMark(position)
+
+    override fun getBoardSize(): Int = model.getBoardSize()
 }
