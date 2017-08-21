@@ -12,5 +12,6 @@ class Contract {
 
     interface Model {
         fun markCross(position: Int)
+        fun getMark(position: Int): Int
     }
 }
