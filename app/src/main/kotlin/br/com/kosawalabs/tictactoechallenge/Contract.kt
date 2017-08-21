@@ -10,5 +10,7 @@ class Contract {
         fun onClicked(position: Int)
     }
 
-    interface Model
+    interface Model {
+        fun markCross(position: Int)
+    }
 }
