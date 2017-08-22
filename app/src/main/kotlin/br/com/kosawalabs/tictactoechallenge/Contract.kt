@@ -5,6 +5,7 @@ class Contract {
         var presenter: Presenter
         fun startGame()
         fun updateView(position: Int)
+        fun showEndGameMessage(winner: String)
     }
 
     interface Presenter {

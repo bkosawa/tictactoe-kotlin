@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.view.Menu
 import android.view.MenuItem
+import android.os.Build
+import android.support.v7.app.AlertDialog
 
 class MainActivity : AppCompatActivity(), Contract.View {
 
@@ -53,6 +55,26 @@ class MainActivity : AppCompatActivity(), Contract.View {
 
     override fun updateView(position: Int) {
         adapter?.notifyItemChanged(position)
+    }
+
+    override fun showEndGameMessage(winner: String) {
+        val builder: AlertDialog.Builder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert)
+        } else {
+            AlertDialog.Builder(this)
+        }
+        builder.setTitle(getString(R.string.app_name))
+                .setMessage(getString(R.string.end_game_message, winner))
+                .setPositiveButton(android.R.string.yes, { dialog, which ->
+                    presenter.start()
+                    dialog.dismiss()
+                })
+                .setNegativeButton(android.R.string.no, { dialog, which ->
+                    finish()
+                    dialog.dismiss()
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show()
     }
 
     private class BoardAdapter(val presenter: Contract.Presenter) : RecyclerView.Adapter<BoardAdapter.Item>() {

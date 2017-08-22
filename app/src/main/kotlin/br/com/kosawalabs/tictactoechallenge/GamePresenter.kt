@@ -10,12 +10,14 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
 
     override fun onClicked(position: Int) {
         if (model.hasFinishedTheGame()) {
+            view.showEndGameMessage("None")
             return
         }
 
         if (model.markCross(position)) {
             view.updateView(position)
             if(model.hasCrossWonTheGame()){
+                view.showEndGameMessage("Cross")
                 return
             }
             robot.playMove()
@@ -24,12 +26,14 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
 
     override fun onRobotPlay(position: Int) {
         if (model.hasFinishedTheGame()) {
+            view.showEndGameMessage("None")
             return
         }
 
         if (model.markCircle(position)) {
             view.updateView(position)
             if(model.hasCircleWonTheGame()){
+                view.showEndGameMessage("Circle")
                 return
             }
         } else {
