@@ -4,6 +4,7 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
     override lateinit var robot: DumbRobot
 
     override fun start() {
+        model.start()
         view.startGame()
     }
 

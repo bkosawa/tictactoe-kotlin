@@ -22,6 +22,7 @@ class Contract {
         fun markCircle(position: Int): Boolean
         fun getMark(position: Int): Int
         fun getBoardSize(): Int
+        fun start()
     }
 
     companion object Injector {

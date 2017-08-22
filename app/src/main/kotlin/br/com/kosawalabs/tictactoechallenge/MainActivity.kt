@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.view.Menu
+import android.view.MenuItem
 
 class MainActivity : AppCompatActivity(), Contract.View {
 
@@ -21,6 +23,20 @@ class MainActivity : AppCompatActivity(), Contract.View {
         board = findViewById(R.id.board) as RecyclerView
 
         Contract.inject(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item!!.itemId
+        if (id == R.id.action_new_game) {
+            presenter.start()
+            return true
+        }
+        return true
     }
 
     override fun onResume() {

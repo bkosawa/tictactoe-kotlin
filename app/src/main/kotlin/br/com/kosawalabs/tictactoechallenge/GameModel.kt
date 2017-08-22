@@ -7,6 +7,10 @@ class GameModel : Contract.Model {
     var rounds = 0
 
     init {
+        start()
+    }
+
+    override fun start() {
         for (i in 0 until BOARD_SIZE) { markedPositionsMap[i] = POSITION_EMPTY }
     }
 
