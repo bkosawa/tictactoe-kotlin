@@ -12,6 +12,7 @@ class GameModel : Contract.Model {
 
     override fun start() {
         for (i in 0 until BOARD_SIZE) { markedPositionsMap[i] = POSITION_EMPTY }
+        rounds = 0
     }
 
     override fun hasFinishedTheGame(): Boolean = rounds >= BOARD_SIZE
