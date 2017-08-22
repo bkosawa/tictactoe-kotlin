@@ -12,6 +12,7 @@ import android.widget.ImageButton
 class MainActivity : AppCompatActivity(), Contract.View {
 
     private lateinit var board: RecyclerView
+    private var adapter: BoardAdapter? = null
     override lateinit var presenter: Contract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +29,14 @@ class MainActivity : AppCompatActivity(), Contract.View {
     }
 
     override fun startGame() {
-        board.adapter = BoardAdapter(presenter)
+        adapter = BoardAdapter(presenter)
+        board.adapter = adapter
         board.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         board.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
+    }
+
+    override fun updateView(position: Int) {
+        adapter?.notifyItemChanged(position)
     }
 
     private class BoardAdapter(val presenter: Contract.Presenter) : RecyclerView.Adapter<BoardAdapter.Item>() {
@@ -53,7 +59,6 @@ class MainActivity : AppCompatActivity(), Contract.View {
         override fun onBindViewHolder(holder: Item, position: Int) {
             holder.button.setOnClickListener {
                 this.presenter.onClicked(position)
-                this.notifyItemChanged(position)
             }
         }
 

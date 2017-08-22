@@ -4,6 +4,7 @@ class Contract {
     interface View {
         var presenter: Presenter
         fun startGame()
+        fun updateView(position: Int)
     }
 
     interface Presenter {
