@@ -23,6 +23,8 @@ class Contract {
         fun getMark(position: Int): Int
         fun getBoardSize(): Int
         fun start()
+        fun hasCrossWonTheGame(): Boolean
+        fun hasCircleWonTheGame(): Boolean
     }
 
     companion object Injector {

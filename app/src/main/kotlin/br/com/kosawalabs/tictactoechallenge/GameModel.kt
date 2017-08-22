@@ -16,6 +16,10 @@ class GameModel : Contract.Model {
 
     override fun hasFinishedTheGame(): Boolean = rounds >= BOARD_SIZE
 
+    override fun hasCrossWonTheGame(): Boolean = hasWonTheGame(POSITION_CROSS)
+
+    override fun hasCircleWonTheGame(): Boolean = hasWonTheGame(POSITION_CIRCLE)
+
     override fun markCross(position: Int): Boolean = mark(position, POSITION_CROSS)
 
     override fun markCircle(position: Int): Boolean = mark(position, POSITION_CIRCLE)

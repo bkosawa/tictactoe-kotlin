@@ -15,6 +15,9 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
 
         if (model.markCross(position)) {
             view.updateView(position)
+            if(model.hasCrossWonTheGame()){
+                return
+            }
             robot.playMove()
         }
     }
@@ -26,6 +29,9 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
 
         if (model.markCircle(position)) {
             view.updateView(position)
+            if(model.hasCircleWonTheGame()){
+                return
+            }
         } else {
             robot.playMove()
         }
