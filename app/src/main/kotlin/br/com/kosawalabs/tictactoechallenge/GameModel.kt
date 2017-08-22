@@ -14,17 +14,11 @@ class GameModel : Contract.Model {
         for (i in 0 until BOARD_SIZE) { markedPositionsMap[i] = POSITION_EMPTY }
     }
 
-    override fun hasFinishedTheGame(): Boolean {
-        return rounds >= BOARD_SIZE
-    }
+    override fun hasFinishedTheGame(): Boolean = rounds >= BOARD_SIZE
 
-    override fun markCross(position: Int): Boolean {
-        return mark(position, POSITION_CROSS)
-    }
+    override fun markCross(position: Int): Boolean = mark(position, POSITION_CROSS)
 
-    override fun markCircle(position: Int): Boolean {
-        return mark(position, POSITION_CIRCLE)
-    }
+    override fun markCircle(position: Int): Boolean = mark(position, POSITION_CIRCLE)
 
     override fun getMark(position: Int): Int = markedPositionsMap[position]!!
 
