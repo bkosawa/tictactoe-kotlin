@@ -4,9 +4,14 @@ class GameModel : Contract.Model {
 
     lateinit var presenter: Contract.Presenter
     var markedPositionsMap: MutableMap<Int, Int> = mutableMapOf()
+    var rounds = 0
 
     init {
         for (i in 0 until BOARD_SIZE) { markedPositionsMap[i] = POSITION_EMPTY }
+    }
+
+    override fun hasFinishedTheGame(): Boolean {
+        return rounds >= BOARD_SIZE
     }
 
     override fun markCross(position: Int): Boolean {
@@ -24,6 +29,7 @@ class GameModel : Contract.Model {
     private fun mark(position: Int, mark: Int): Boolean {
         return if (markedPositionsMap[position]!! == POSITION_EMPTY) {
             markedPositionsMap[position] = mark
+            rounds++
             true
         } else {
             false
