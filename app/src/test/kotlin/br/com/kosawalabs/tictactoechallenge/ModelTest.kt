@@ -25,11 +25,20 @@ class ModelTest {
 
     @Test
     @Throws(Exception::class)
-    fun givenStartIsCalledItShouldCallStartGame() {
+    fun givenMarkCrossIsCalledItShouldSetCrossToPosition() {
         val mockedPos = 1
         model.markCross(mockedPos)
 
         assertEquals(model.getMark(mockedPos), GameModel.POSITION_CROSS)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun givenMarkCircleIsCalledItShouldSetCircleToPosition() {
+        val mockedPos = 1
+        model.markCircle(mockedPos)
+
+        assertEquals(model.getMark(mockedPos), GameModel.POSITION_CIRCLE)
     }
 
 }
