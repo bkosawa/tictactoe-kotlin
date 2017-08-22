@@ -7,8 +7,10 @@ class Contract {
     }
 
     interface Presenter {
+        var robot: DumbRobot
         fun start()
         fun onClicked(position: Int)
+        fun onRobotPlay(position: Int)
         fun getMark(position: Int): Int
         fun getBoardSize(): Int
     }
@@ -26,6 +28,7 @@ class Contract {
             val model = GameModel()
             val presenter = GamePresenter(view, model)
 
+            presenter.robot = DumbRobot(presenter, GameModel.BOARD_SIZE)
             view.presenter = presenter
             model.presenter = presenter
         }
