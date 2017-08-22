@@ -6,20 +6,9 @@ import org.mockito.Mockito
 
 class PresenterTest {
 
-    lateinit var presenter: Contract.Presenter
-    lateinit var mockView: Contract.View
-    lateinit var mockModel: Contract.Model
-
-    @Before
-    fun setup() {
-        val presenter = GamePresenter()
-        mockView = Mockito.mock(Contract.View::class.java)
-        mockModel = Mockito.mock(Contract.Model::class.java)
-
-        presenter.view = mockView
-        presenter.model = mockModel
-        this.presenter = presenter
-    }
+    private val mockView: Contract.View = Mockito.mock(Contract.View::class.java)
+    private val mockModel: Contract.Model = Mockito.mock(Contract.Model::class.java)
+    private val presenter: Contract.Presenter = GamePresenter(mockView, mockModel)
 
     @Test
     @Throws(Exception::class)

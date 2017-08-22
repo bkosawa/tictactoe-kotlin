@@ -12,7 +12,7 @@ import android.widget.ImageButton
 class MainActivity : AppCompatActivity(), Contract.View {
 
     private lateinit var board: RecyclerView
-    private lateinit var presenter: Contract.Presenter
+    override lateinit var presenter: Contract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +25,6 @@ class MainActivity : AppCompatActivity(), Contract.View {
     override fun onResume() {
         super.onResume()
         presenter.start()
-    }
-
-    override fun injectPresenter(presenter: Contract.Presenter) {
-        this.presenter = presenter
     }
 
     override fun startGame() {

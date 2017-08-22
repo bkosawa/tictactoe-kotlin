@@ -2,7 +2,7 @@ package br.com.kosawalabs.tictactoechallenge
 
 class Contract {
     interface View {
-        fun injectPresenter(presenter: Presenter)
+        var presenter: Presenter
         fun startGame()
     }
 
@@ -23,12 +23,10 @@ class Contract {
     companion object Injector {
         fun inject(view: View) {
             val model = GameModel()
-            val presenter = GamePresenter()
+            val presenter = GamePresenter(view, model)
 
-            view.injectPresenter(presenter)
+            view.presenter = presenter
             model.presenter = presenter
-            presenter.view = view
-            presenter.model = model
         }
     }
 }

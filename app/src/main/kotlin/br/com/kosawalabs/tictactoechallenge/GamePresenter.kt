@@ -1,8 +1,6 @@
 package br.com.kosawalabs.tictactoechallenge
 
-class GamePresenter : Contract.Presenter {
-    lateinit var view: Contract.View
-    lateinit var model: Contract.Model
+class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contract.Presenter {
 
     override fun start() {
         view.startGame()
