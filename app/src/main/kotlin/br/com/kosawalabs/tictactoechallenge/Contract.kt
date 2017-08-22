@@ -14,7 +14,8 @@ class Contract {
     }
 
     interface Model {
-        fun markCross(position: Int)
+        fun markCross(position: Int): Boolean
+        fun markCircle(position: Int): Boolean
         fun getMark(position: Int): Int
         fun getBoardSize(): Int
     }
