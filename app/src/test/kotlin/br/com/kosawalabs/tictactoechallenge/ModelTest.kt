@@ -2,9 +2,9 @@ package br.com.kosawalabs.tictactoechallenge
 
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import org.mockito.Mockito
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class ModelTest {
 
@@ -39,6 +39,15 @@ class ModelTest {
         model.markCircle(mockedPos)
 
         assertEquals(model.getMark(mockedPos), GameModel.POSITION_CIRCLE)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun givenItShould() {
+        model.markCircle(0)
+        model.markCircle(1)
+        model.markCircle(2)
+        assertTrue((model as GameModel).hasWonTheGame(GameModel.POSITION_CIRCLE))
     }
 
 }

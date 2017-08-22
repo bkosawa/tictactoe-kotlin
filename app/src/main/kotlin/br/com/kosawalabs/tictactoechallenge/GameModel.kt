@@ -34,6 +34,40 @@ class GameModel : Contract.Model {
         }
     }
 
+    fun hasWonTheGame(mark: Int): Boolean {
+        return (markedPositionsMap[0]!! == mark &&
+                markedPositionsMap[1]!! == mark &&
+                markedPositionsMap[2]!! == mark)
+
+                || (markedPositionsMap[3]!! == mark &&
+                markedPositionsMap[4]!! == mark &&
+                markedPositionsMap[5]!! == mark)
+
+                || (markedPositionsMap[6]!! == mark &&
+                markedPositionsMap[7]!! == mark &&
+                markedPositionsMap[8]!! == mark)
+
+                || (markedPositionsMap[0]!! == mark &&
+                markedPositionsMap[3]!! == mark &&
+                markedPositionsMap[6]!! == mark)
+
+                || (markedPositionsMap[1]!! == mark &&
+                markedPositionsMap[4]!! == mark &&
+                markedPositionsMap[7]!! == mark)
+
+                || (markedPositionsMap[2]!! == mark &&
+                markedPositionsMap[5]!! == mark &&
+                markedPositionsMap[8]!! == mark)
+
+                || (markedPositionsMap[0]!! == mark &&
+                markedPositionsMap[4]!! == mark &&
+                markedPositionsMap[8]!! == mark)
+
+                || (markedPositionsMap[3]!! == mark &&
+                markedPositionsMap[4]!! == mark &&
+                markedPositionsMap[6]!! == mark)
+    }
+
     companion object {
         val BOARD_SIZE = 9
         val POSITION_EMPTY = 0
