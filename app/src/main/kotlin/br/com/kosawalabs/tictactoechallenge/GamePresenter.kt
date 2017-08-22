@@ -8,11 +8,23 @@ class GamePresenter(val view: Contract.View, val model: Contract.Model) : Contra
     }
 
     override fun onClicked(position: Int) {
-        model.markCross(position)
+        if (model.hasFinishedTheGame()) {
+            return
+        }
+
+        if (model.markCross(position)) {
+            robot.playMove()
+        }
     }
 
     override fun onRobotPlay(position: Int) {
-        model.markCircle(position)
+        if (model.hasFinishedTheGame()) {
+            return
+        }
+
+        if (!model.markCircle(position)) {
+            robot.playMove()
+        }
     }
 
     override fun getMark(position: Int): Int = model.getMark(position)
